@@ -1,3 +1,24 @@
-from django.shortcuts import render
+from django.contrib.auth.models import update_last_login
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenViewBase
 
-# Create your views here.
+from users.models import CustomUser
+
+
+class MyTokenObtainPairView(TokenObtainPairView, TokenViewBase):
+    """
+    Переопределение класса TokenObtainPairView с предоставлением доступа всем
+    """
+
+    permission_classes = [AllowAny]
+
+    def post(self, request, *args, **kwargs):
+        response = super().post(request, *args, **kwargs)
+        if response.status_code == 200:
+            print(request.data)
+            user = self.get_user(request.data)
+            update_last_login(None, user)
+        return response
+
+    def get_user(self, validated_data):
+        return CustomUser.objects.get(email=validated_data["email"])
