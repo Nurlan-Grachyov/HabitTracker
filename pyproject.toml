@@ -7,7 +7,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.12"
-django = "^5.2"
+django = "5.1.8"
 djangorestframework = "^3.16.0"
 black = "^25.1.0"
 pyflakes = "3.3.2"
@@ -19,6 +19,10 @@ drf-yasg = "^1.21.10"
 python-dotenv = "^1.1.0"
 psycopg2 = "^2.9.10"
 djangorestframework-simplejwt = "^5.5.0"
+requests = "^2.32.3"
+celery = "^5.5.1"
+django-celery-beat = "^2.7.0"
+redis = "^5.2.1"
 
 
 [build-system]

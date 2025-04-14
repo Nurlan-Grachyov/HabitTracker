@@ -9,10 +9,8 @@ class Owner(BasePermission):
     """
 
     def has_object_permission(self, request, view, obj):
-        print("3")
         if request.method in ("GET", "PUT", "PATCH", "DELETE"):
-            print("4")
-            return request.user == obj.owner
+            return request.user == obj.owner or request.user.is_superuser
         return False
 
 
@@ -22,8 +20,6 @@ class ListHabits(BasePermission):
     """
 
     def has_permission(self, request, view):
-        print("3")
         if request.method in ("GET",):
-            print("4")
-            return Habits.objects.filter(is_public=True)
+            return True
         return False

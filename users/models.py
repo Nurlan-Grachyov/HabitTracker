@@ -5,6 +5,7 @@ from django.db import models
 class CustomUser(AbstractUser):
     username = models.CharField(unique=True)
     email = models.CharField(verbose_name="email", unique=True)
+    tg_id = models.CharField(null=True, blank=True)
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["username"]

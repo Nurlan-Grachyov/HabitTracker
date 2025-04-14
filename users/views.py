@@ -12,16 +12,6 @@ class MyTokenObtainPairView(TokenObtainPairView, TokenViewBase):
 
     permission_classes = [AllowAny]
 
-    # def post(self, request, *args, **kwargs):
-    #     response = super().post(request, *args, **kwargs)
-    #     if response.status_code == 200:
-    #         print(request.data)
-    #         user = self.get_user(request.data)
-    #         update_last_login(None, user)
-    #     return response
-    #
-    # def get_user(self, validated_data):
-    #     return CustomUser.objects.get(email=validated_data["email"])
 
 class RegisterCreateAPIView(generics.CreateAPIView):
     """
