@@ -32,7 +32,7 @@ class HabitsViewSet(ModelViewSet):
 
     def get_queryset(self):
         """
-        Метод возврата списка продуктов по критериям.
+        Метод возврата списка привычек по критериям.
         """
 
         if self.request.user.is_authenticated:
