@@ -1,3 +1,5 @@
+from http.client import responses
+
 import requests
 
 from config.settings import TG_URL, BOT_TOKEN
@@ -10,13 +12,20 @@ from habits.services import is_time_to_send_reminder
 @shared_task
 def time_habit():
     """ Задача для отправки уведомления в Телеграм. """
-    # habits = Habits.objects.all()
-    # for habit in habits:
-    #     if habit.owner.tg_id:
-    #         if is_time_to_send_reminder(habit):
-    #             params = {
-    #                 'text': f'Send a reminder about habit',
-    #                 'chat_id': habit.owner.tg_id,
-    #             }
-    #             requests.get(f'{TG_URL}{BOT_TOKEN}/sendMessage', params=params)
-    print("Функция работает")
+    print("test")
+    habits = Habits.objects.all()
+    for habit in habits:
+        print("test1")
+        if habit.owner.tg_id and is_time_to_send_reminder(habit):
+            print("test2")
+            params = {
+                'text': 'Send a reminder about habit',
+                'chat_id': habit.owner.tg_id,
+            }
+            print("test3")
+            try:
+                print("test4")
+                response = requests.get(f'{TG_URL}{BOT_TOKEN}/sendMessage', params=params)
+                print(response.json())
+            except Exception as e:
+                print(f"Ошибка: {e}")
