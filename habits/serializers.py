@@ -27,18 +27,30 @@ class HabitsSerializer(ModelSerializer):
         return updated_instance
 
     def validate(self, data):
-        if not data.get('related_habit') and not data.get('reward'):
-            raise serializers.ValidationError('Необходимо указать либо связанную привычку, либо награду.')
+        if not data.get("related_habit") and not data.get("reward"):
+            raise serializers.ValidationError(
+                "Необходимо указать либо связанную привычку, либо награду."
+            )
 
-        if data.get('is_pleasant_habit') and (data.get('reward') or data.get('related_habit')):
-            raise serializers.ValidationError({
-                'message': 'У приятной привычки не может быть вознаграждения или связанной привычки.'
-            })
+        if data.get("is_pleasant_habit") and (
+            data.get("reward") or data.get("related_habit")
+        ):
+            raise serializers.ValidationError(
+                {
+                    "message": "У приятной привычки не может быть вознаграждения или связанной привычки."
+                }
+            )
 
-        if data.get('related_habit') and not data['related_habit'].is_pleasant_habit:
-            raise serializers.ValidationError({'related_habit': 'Связанная привычка должна быть приятной'})
+        if data.get("related_habit") and not data["related_habit"].is_pleasant_habit:
+            raise serializers.ValidationError(
+                {"related_habit": "Связанная привычка должна быть приятной"}
+            )
 
-        if data.get('performed_at') and timezone.now() - data['performed_at'] > timezone.timedelta(days=7):
-            raise serializers.ValidationError('Привычка должна выполняться чаще, чем раз в неделю')
+        if data.get("performed_at") and timezone.now() - data[
+            "performed_at"
+        ] > timezone.timedelta(days=7):
+            raise serializers.ValidationError(
+                "Привычка должна выполняться чаще, чем раз в неделю"
+            )
 
         return data

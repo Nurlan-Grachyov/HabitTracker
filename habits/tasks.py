@@ -9,6 +9,7 @@ from habits.services import is_time_to_send_reminder
 
 @shared_task
 def time_habit():
+    """ Задача для отправки уведомления в Телеграм. """
     # habits = Habits.objects.all()
     # for habit in habits:
     #     if habit.owner.tg_id:
