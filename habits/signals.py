@@ -13,7 +13,7 @@ def create_periodic_tasks(sender, **kwargs):
             task_name = f"Send a reminder about {habit}"
             schedule, _ = IntervalSchedule.objects.get_or_create(
                 every=habit.periodicity,
-                period=IntervalSchedule.MINUTES,
+                period=IntervalSchedule.DAYS,
             )
 
             PeriodicTask.objects.update_or_create(
