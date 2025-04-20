@@ -22,7 +22,7 @@ def time_habit():
                 'text': 'Send a reminder about habit',
                 'chat_id': habit.owner.tg_id,
             }
-            print("test3")
+            print(f"tg_id: {habit.owner.tg_id}")
             try:
                 print("test4")
                 response = requests.get(f'{TG_URL}{BOT_TOKEN}/sendMessage', params=params)
