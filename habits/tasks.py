@@ -1,5 +1,3 @@
-from http.client import responses
-
 import requests
 
 from config.settings import TG_URL, BOT_TOKEN

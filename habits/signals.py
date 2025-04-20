@@ -7,7 +7,6 @@ from habits.services import is_time_to_send_reminder
 
 @receiver(post_migrate)
 def create_periodic_tasks(sender, **kwargs):
-    PeriodicTask.objects.filter(name__startswith="Send a reminder about").delete()
     habits = Habits.objects.all()
     for habit in habits:
         if is_time_to_send_reminder(habit):
