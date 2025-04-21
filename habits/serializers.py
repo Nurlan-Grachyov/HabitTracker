@@ -7,12 +7,13 @@ from habits.models import Habits
 
 class HabitsSerializer(ModelSerializer):
     """
-    Сериалайзер привычек
+    Сериализатор привычек
     """
 
     class Meta:
         model = Habits
-        fields = "__all__"
+        exclude = ["owner"]
+
 
     def create(self, validated_data):
         habit = super().create(validated_data)

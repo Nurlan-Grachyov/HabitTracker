@@ -6,4 +6,4 @@ class HabitsConfig(AppConfig):
     name = "habits"
 
     def ready(self):
-        from habits.signals import create_periodic_tasks
+        from habits.tasks import create_periodic_tasks

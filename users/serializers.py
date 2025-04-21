@@ -5,7 +5,7 @@ from users.models import CustomUser
 
 class RegisterSerializer(serializers.ModelSerializer):
     """
-    Сериализатор регистрации с методом создания
+    Сериализатор регистрации с методом создания пользователя
     """
 
     class Meta:
