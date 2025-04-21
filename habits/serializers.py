@@ -14,7 +14,6 @@ class HabitsSerializer(ModelSerializer):
         model = Habits
         exclude = ["owner"]
 
-
     def create(self, validated_data):
         habit = super().create(validated_data)
         habit.performed_at = timezone.now()

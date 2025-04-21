@@ -2,7 +2,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 
 from habits.models import Habits
-from habits.permission import Owner, ListHabits
+from habits.permission import ListHabits, Owner
 from habits.serializers import HabitsSerializer
 
 

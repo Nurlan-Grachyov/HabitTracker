@@ -645,6 +645,22 @@ files = [
 ]
 
 [[package]]
+name = "isort"
+version = "6.0.1"
+description = "A Python utility / library to sort Python imports."
+optional = false
+python-versions = ">=3.9.0"
+groups = ["main"]
+files = [
+    {file = "isort-6.0.1-py3-none-any.whl", hash = "sha256:2dc5d7f65c9678d94c88dfc29161a320eec67328bc97aad576874cb4be1e9615"},
+    {file = "isort-6.0.1.tar.gz", hash = "sha256:1cb5df28dfbc742e490c5e41bad6da41b805b0a8be7bc93cd0fb2a8a890ac450"},
+]
+
+[package.extras]
+colors = ["colorama"]
+plugins = ["setuptools"]
+
+[[package]]
 name = "kombu"
 version = "5.5.2"
 description = "Messaging library for Python."
@@ -1128,4 +1144,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.12"
-content-hash = "b6c477f26d6b3ee5f5af8399a8a79439715e0c9342e5cf7702427976bc54bea1"
+content-hash = "7fc934c35cf9b63e15e1ae6e8c34dfda9dd4c5c7bba1d2ea80ea307c7c226205"
