@@ -24,3 +24,21 @@ def time_habit():
                 print(response.json())
             except Exception as e:
                 print(f"Ошибка: {e}")
+
+
+@shared_task
+def create_periodic_tasks(**kwargs):
+    """Создание задачи"""
+    habits = Habits.objects.all()
+    for habit in habits:
+        if is_time_to_send_reminder(habit):
+            task_name = f"Send a reminder about {habit}"
+            schedule, _ = IntervalSchedule.objects.get_or_create(
+                every=habit.periodicity,
+                period=IntervalSchedule.MINUTES,
+            )
+
+            PeriodicTask.objects.update_or_create(
+                name=task_name,
+                defaults={"interval": schedule, "task": "habits.tasks.time_habit"},
+            )

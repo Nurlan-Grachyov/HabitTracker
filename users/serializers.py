@@ -18,7 +18,9 @@ class RegisterSerializer(serializers.ModelSerializer):
         """
 
         user = CustomUser(
-            email=validated_data["email"], username=validated_data["username"], tg_id=validated_data["tg_id"]
+            email=validated_data["email"],
+            username=validated_data["username"],
+            tg_id=validated_data["tg_id"],
         )
         user.set_password(validated_data["password"])
         user.is_active = True

@@ -181,3 +181,10 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 CORS_ALLOW_ALL_ORIGINS = False
+
+CELERY_BEAT_SCHEDULE = {
+    "task-name": {
+        "task": "habits.tasks.create_periodic_tasks",
+        "schedule": timedelta(minutes=10),
+    },
+}
