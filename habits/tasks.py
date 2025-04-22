@@ -14,7 +14,7 @@ def time_habit():
     for habit in habits:
         if habit.owner.tg_id and is_time_to_send_reminder(habit):
             params = {
-                "text": "Send a reminder about habit",
+                "text": f"Send a reminder about {habit}",
                 "chat_id": habit.owner.tg_id,
             }
             try:
@@ -26,16 +26,15 @@ def time_habit():
                 print(f"Ошибка: {e}")
 
 
-@shared_task
 def create_periodic_tasks(**kwargs):
-    """Создание задачи"""
+    """Создание задачи, реализуется при обновлении или создании задачи"""
     habits = Habits.objects.all()
     for habit in habits:
         if is_time_to_send_reminder(habit):
             task_name = f"Send a reminder about {habit}"
             schedule, _ = IntervalSchedule.objects.get_or_create(
                 every=habit.periodicity,
-                period=IntervalSchedule.MINUTES,
+                period=IntervalSchedule.DAYS,
             )
 
             PeriodicTask.objects.update_or_create(
