@@ -1,0 +1,113 @@
+[
+  {
+    "model": "users.customuser",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$BjzrLi5Y2jiC7lR0zXe6Bd$uyIK4NMylpODwc21nGEs2TiAEjzfdL82rkFj+QrZNhc=",
+      "last_login": "2025-04-15T19:50:37.978Z",
+      "is_superuser": true,
+      "first_name": "",
+      "last_name": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2025-04-14T11:56:02.781Z",
+      "username": "admin",
+      "email": "admin@mail.ru",
+      "tg_id": null,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.customuser",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$1000000$PtzqLEhemGXxUiZnZUkI8D$iGgWs31G6OeKQztkq7HVyTY3jE8fEPs1LNgpIl+35eI=",
+      "last_login": null,
+      "is_superuser": false,
+      "first_name": "",
+      "last_name": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2025-04-14T12:09:47.806Z",
+      "username": "",
+      "email": "normal@mail.ru",
+      "tg_id": null,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.customuser",
+    "pk": 6,
+    "fields": {
+      "password": "pbkdf2_sha256$1000000$KnzQEt6uxPWkKRTGurSIyE$Y6IHmlV4+i2J0llZaQCaDo3WVBc+DSH8jDaqvEGrNeY=",
+      "last_login": null,
+      "is_superuser": false,
+      "first_name": "",
+      "last_name": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2025-04-14T14:06:02.183Z",
+      "username": "another",
+      "email": "another@mail.ru",
+      "tg_id": null,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.customuser",
+    "pk": 7,
+    "fields": {
+      "password": "pbkdf2_sha256$1000000$Cm5hJ3U7OouVihmDBpOeSN$uvhGNzqgWjFFz37ajmFeZuFrU/o65p6Zs5z/YeTVTDU=",
+      "last_login": null,
+      "is_superuser": false,
+      "first_name": "",
+      "last_name": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2025-04-14T19:06:00.002Z",
+      "username": "owner",
+      "email": "owner@mail.ru",
+      "tg_id": null,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.customuser",
+    "pk": 15,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$DMniXXm1BeJHq05eSo0GP0$3JHoQmoaJEj4GJwEAnyX46Q4hHSWJOpxEd7mnSpz5nA=",
+      "last_login": null,
+      "is_superuser": false,
+      "first_name": "",
+      "last_name": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2025-04-19T13:41:11.668Z",
+      "username": "owner5",
+      "email": "owner5@test.com",
+      "tg_id": "6386702531",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "habits.habits",
+    "pk": 1,
+    "fields": {
+      "place": "улица",
+      "start_time": "17:30:00",
+      "action": "бегать",
+      "is_pleasant_habit": false,
+      "related_habit": null,
+      "periodicity": 1,
+      "reward": "съесть яблоко",
+      "time_to_complete": "00:02:00",
+      "is_public": true,
+      "owner": 15
+    }
+  }
+]
