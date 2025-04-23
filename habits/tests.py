@@ -1,6 +1,5 @@
 from rest_framework import status
-from rest_framework.test import (APIRequestFactory, APITestCase,
-                                 force_authenticate)
+from rest_framework.test import APIRequestFactory, APITestCase, force_authenticate
 
 from habits.models import Habits
 from habits.views import HabitsViewSet
