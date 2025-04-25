@@ -41,7 +41,7 @@ def setup_habit_tasks():
                 'interval': schedule,
                 'task': 'habits.tasks.time_habit',
                 'args': json.dumps([habit.id]),
-                'start_time': now().replace(hour=habit.start_time.hour, minute=habit.start_time.minute),
+                # 'start_time': now().replace(hour=habit.start_time.hour, minute=habit.start_time.minute),
                 'enabled': True
             }
         )
