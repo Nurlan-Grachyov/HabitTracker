@@ -32,7 +32,7 @@ def setup_habit_tasks():
             every=habit.periodicity,
             period=IntervalSchedule.DAYS,
         )
-
+        print("good")
         task_name = f"Send a reminder about {habit}"
 
         PeriodicTask.objects.update_or_create(
@@ -40,8 +40,9 @@ def setup_habit_tasks():
             defaults={
                 'interval': schedule,
                 'task': 'habits.tasks.time_habit',
-                'args': [habit.id],
+                'args': json.dumps([habit.id]),
                 'start_time': now().replace(hour=habit.start_time.hour, minute=habit.start_time.minute),
                 'enabled': True
             }
         )
+        print("good1")
