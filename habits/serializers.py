@@ -1,11 +1,9 @@
 from django.utils import timezone
-from django_celery_beat.models import IntervalSchedule, PeriodicTask
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
 
 from habits.models import Habits
-from habits.services import is_time_to_send_reminder
-from habits.tasks import create_periodic_tasks
+from habits.tasks import setup_habit_tasks
 
 
 class HabitsSerializer(ModelSerializer):
@@ -22,7 +20,7 @@ class HabitsSerializer(ModelSerializer):
         habit.performed_at = timezone.now()
         habit.save()
 
-        create_periodic_tasks()
+        setup_habit_tasks()
         return habit
 
     def update(self, instance, validated_data):
@@ -30,7 +28,7 @@ class HabitsSerializer(ModelSerializer):
         updated_instance.performed_at = timezone.now()
         updated_instance.save()
 
-        create_periodic_tasks()
+        setup_habit_tasks()
         return updated_instance
 
     def validate(self, data):

@@ -25,11 +25,11 @@ class HabitsViewSet(ModelViewSet):
         if self.action == "list":
             permission_classes = [ListHabits]
         elif self.action in (
-            "create",
-            "retrieve",
-            "update",
-            "partial_update",
-            "destroy",
+                "create",
+                "retrieve",
+                "update",
+                "partial_update",
+                "destroy",
         ):
             permission_classes = [Owner]
         else:
@@ -41,9 +41,11 @@ class HabitsViewSet(ModelViewSet):
         Метод возврата списка привычек по критериям.
         """
 
-        if self.request.user.is_authenticated:
-            return Habits.objects.filter(
-                owner=self.request.user
-            ) or Habits.objects.filter(is_public=True)
-        elif self.request.user.is_superuser:
+        if self.request.user.is_superuser:
             return Habits.objects.all()
+
+        elif self.request.user.is_authenticated:
+            return Habits.objects.filter(owner=self.request.user) | Habits.objects.filter(is_public=True)
+
+        else:
+            return Habits.objects.none()
