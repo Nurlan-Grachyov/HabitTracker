@@ -16,7 +16,7 @@ def time_habit(habit_id):
         habit = Habits.objects.get(id=habit_id)
         if habit.owner.tg_id and is_time_to_send_reminder(habit):
             params = {
-                "text": f"Напоминание: {habit.action} в {habit.time}",
+                "text": f"Напоминание: {habit.action} в {habit.start_time}",
                 "chat_id": habit.owner.tg_id,
             }
             response = requests.get(f"{TG_URL}{BOT_TOKEN}/sendMessage", params=params)
@@ -32,7 +32,6 @@ def setup_habit_tasks():
             every=habit.periodicity,
             period=IntervalSchedule.DAYS,
         )
-        print("good")
         task_name = f"Send a reminder about {habit}"
 
         PeriodicTask.objects.update_or_create(
@@ -41,8 +40,6 @@ def setup_habit_tasks():
                 'interval': schedule,
                 'task': 'habits.tasks.time_habit',
                 'args': json.dumps([habit.id]),
-                # 'start_time': now().replace(hour=habit.start_time.hour, minute=habit.start_time.minute),
                 'enabled': True
             }
         )
-        print("good1")
