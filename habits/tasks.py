@@ -2,7 +2,6 @@ import json
 
 from celery import shared_task
 from django_celery_beat.models import IntervalSchedule, PeriodicTask
-from django.utils.timezone import now
 import requests
 from config.settings import BOT_TOKEN, TG_URL
 from habits.models import Habits
@@ -29,8 +28,8 @@ def setup_habit_tasks():
     """Создание/обновление периодических задач для привычек"""
     for habit in Habits.objects.all():
         schedule, _ = IntervalSchedule.objects.get_or_create(
-            every=habit.periodicity,
-            period=IntervalSchedule.DAYS,
+            every=habit.periodicity * 24,
+            period=IntervalSchedule.HOURS,
         )
         task_name = f"Send a reminder about {habit}"
 
