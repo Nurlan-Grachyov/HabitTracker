@@ -1,8 +1,9 @@
 import json
 
-from celery import shared_task
-from django_celery_beat.models import PeriodicTask, CrontabSchedule
 import requests
+from celery import shared_task
+from django_celery_beat.models import CrontabSchedule, PeriodicTask
+
 from config.settings import BOT_TOKEN, TG_URL
 from habits.models import Habits
 from habits.services import is_time_to_send_reminder
