@@ -32,9 +32,9 @@ def setup_habit_tasks():
             minute=str(habit.start_time.minute),
             hour=str(habit.start_time.hour),
             day_of_week="*",
-            day_of_month='*',
-            month_of_year='*',
-            timezone='Europe/Moscow'
+            day_of_month="*",
+            month_of_year="*",
+            timezone="Europe/Moscow",
         )
 
         task_name = f"Send a reminder about {habit}"
@@ -42,9 +42,9 @@ def setup_habit_tasks():
         PeriodicTask.objects.update_or_create(
             name=task_name,
             defaults={
-                'crontab': schedule,
-                'task': 'habits.tasks.time_habit',
-                'args': json.dumps([habit.id]),
-                'enabled': True
-            }
+                "crontab": schedule,
+                "task": "habits.tasks.time_habit",
+                "args": json.dumps([habit.id]),
+                "enabled": True,
+            },
         )
