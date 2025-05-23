@@ -1,7 +1,7 @@
 import json
 
 from celery import shared_task
-from django_celery_beat.models import IntervalSchedule, PeriodicTask
+from django_celery_beat.models import PeriodicTask, CrontabSchedule
 import requests
 from config.settings import BOT_TOKEN, TG_URL
 from habits.models import Habits
@@ -13,6 +13,7 @@ def time_habit(habit_id):
     """Отправка уведомления для конкретной привычки"""
     try:
         habit = Habits.objects.get(id=habit_id)
+        print(is_time_to_send_reminder(habit))
         if habit.owner.tg_id and is_time_to_send_reminder(habit):
             params = {
                 "text": f"Напоминание: {habit.action} в {habit.start_time}",
@@ -27,16 +28,21 @@ def time_habit(habit_id):
 def setup_habit_tasks():
     """Создание/обновление периодических задач для привычек"""
     for habit in Habits.objects.all():
-        schedule, _ = IntervalSchedule.objects.get_or_create(
-            every=habit.periodicity * 24,
-            period=IntervalSchedule.HOURS,
+        schedule, _ = CrontabSchedule.objects.get_or_create(
+            minute=str(habit.start_time.minute),
+            hour=str(habit.start_time.hour),
+            day_of_week="*",
+            day_of_month='*',
+            month_of_year='*',
+            timezone='Europe/Moscow'
         )
+
         task_name = f"Send a reminder about {habit}"
 
         PeriodicTask.objects.update_or_create(
             name=task_name,
             defaults={
-                'interval': schedule,
+                'crontab': schedule,
                 'task': 'habits.tasks.time_habit',
                 'args': json.dumps([habit.id]),
                 'enabled': True
