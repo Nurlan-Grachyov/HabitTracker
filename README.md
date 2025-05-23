@@ -39,7 +39,6 @@ python manage.py collectstatic
 poetry shell
 python manage.py runserver
 ````
-
 Теперь ваш проект доступен по адресу: http://127.0.0.1:8000/
 
 🚧 Запуск через Docker (опционально)
